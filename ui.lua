@@ -5151,7 +5151,6 @@ function HawkLib:Window(Win)
             pcall(callback, toggled)
         end
     end)
-end
 
 
 				TweenService:Create(
