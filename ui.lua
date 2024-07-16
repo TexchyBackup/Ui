@@ -5033,145 +5033,126 @@ function HawkLib:Window(Win)
 				):Play()
 			end
 
-			function ContainerItems:Toggle(TexT, check, callback)
+	function ContainerItems:Toggle(TexT, check, callback)
     callback = callback or function() end
-    local toggled = check or false 
-				end
-				local toggled = false
-				local ToggleFrame = Instance.new("Frame")
-				local Toggle = Instance.new("TextButton")
-				local UICorner_25 = Instance.new("UICorner")
-				local ToggleText = Instance.new("TextLabel")
-				local UICorner_26 = Instance.new("UICorner")
-				local ToggleIconer = Instance.new("Frame")
-				local UICorner_27 = Instance.new("UICorner")
-				local done = Instance.new("ImageLabel")
-				local UICorner_28 = Instance.new("UICorner")
-				local UICorner_29 = Instance.new("UICorner")
-				local UIStroke = Instance.new("UIStroke")
+    local toggled = check or false
 
-				ToggleFrame.Name = "ToggleFrame"
-				ToggleFrame.Parent = Container
-				ToggleFrame.Active = true
-				ToggleFrame.BackgroundColor3 = HawkLib.Themes[Theme].ItemColors
-				ToggleFrame.BorderColor3 = HawkLib.Themes[Theme].ItemColors
-				ToggleFrame.Position = UDim2.new(0.0196850393, 0, 0.637992859, 0)
-				ToggleFrame.Size = UDim2.new(0, 391, 0, 44)
+    local ToggleFrame = Instance.new("Frame")
+    local Toggle = Instance.new("TextButton")
+    local UICorner_25 = Instance.new("UICorner")
+    local ToggleText = Instance.new("TextLabel")
+    local UICorner_26 = Instance.new("UICorner")
+    local ToggleIconer = Instance.new("Frame")
+    local UICorner_27 = Instance.new("UICorner")
+    local done = Instance.new("ImageLabel")
+    local UICorner_28 = Instance.new("UICorner")
+    local UICorner_29 = Instance.new("UICorner")
+    local UIStroke = Instance.new("UIStroke")
 
-				Toggle.Name = "Toggle"
-				Toggle.Parent = ToggleFrame
-				Toggle.BackgroundColor3 = HawkLib.Themes[Theme].ItemColors
-				Toggle.BackgroundTransparency = 1.000
-				Toggle.BorderColor3 = HawkLib.Themes[Theme].ItemColors
-				Toggle.Size = UDim2.new(0, 391, 0, 44)
-				Toggle.Font = Enum.Font.GothamBold
-				Toggle.Text = ""
-				Toggle.TextColor3 = Color3.fromRGB(154, 154, 154)
-				Toggle.TextSize = 14.000
-				Toggle.AutoButtonColor = false
+    ToggleFrame.Name = "ToggleFrame"
+    ToggleFrame.Parent = Container
+    ToggleFrame.Active = true
+    ToggleFrame.BackgroundColor3 = HawkLib.Themes[Theme].ItemColors
+    ToggleFrame.BorderColor3 = HawkLib.Themes[Theme].ItemColors
+    ToggleFrame.Position = UDim2.new(0.0196850393, 0, 0.637992859, 0)
+    ToggleFrame.Size = UDim2.new(0, 391, 0, 44)
 
-				UICorner_25.CornerRadius = UDim.new(0, 5)
-				UICorner_25.Parent = Toggle
+    Toggle.Name = "Toggle"
+    Toggle.Parent = ToggleFrame
+    Toggle.BackgroundColor3 = HawkLib.Themes[Theme].ItemColors
+    Toggle.BackgroundTransparency = 1.000
+    Toggle.BorderColor3 = HawkLib.Themes[Theme].ItemColors
+    Toggle.Size = UDim2.new(0, 391, 0, 44)
+    Toggle.Font = Enum.Font.GothamBold
+    Toggle.Text = ""
+    Toggle.TextColor3 = Color3.fromRGB(154, 154, 154)
+    Toggle.TextSize = 14.000
+    Toggle.AutoButtonColor = false
 
-				ToggleText.Name = "ToggleText"
-				ToggleText.Parent = Toggle
-				ToggleText.BackgroundColor3 = HawkLib.Themes[Theme].ItemColors
-				ToggleText.BackgroundTransparency = 1.000
-				ToggleText.BorderColor3 = HawkLib.Themes[Theme].ItemColors
-				ToggleText.Position = UDim2.new(0.031, 0,0.275, 0)
-				ToggleText.Size = UDim2.new(0, 121, 0, 22)
-				ToggleText.Font = Enum.Font.GothamBold
-				ToggleText.Text = TexT
-				ToggleText.TextColor3 = HawkLib.Themes[Theme].ItemTitleColors
-				ToggleText.TextSize = 14.000
-				ToggleText.TextXAlignment = Enum.TextXAlignment.Left
+    UICorner_25.CornerRadius = UDim.new(0, 5)
+    UICorner_25.Parent = Toggle
 
-				UICorner_26.CornerRadius = UDim.new(0, 5)
-				UICorner_26.Parent = ToggleText
+    ToggleText.Name = "ToggleText"
+    ToggleText.Parent = Toggle
+    ToggleText.BackgroundColor3 = HawkLib.Themes[Theme].ItemColors
+    ToggleText.BackgroundTransparency = 1.000
+    ToggleText.BorderColor3 = HawkLib.Themes[Theme].ItemColors
+    ToggleText.Position = UDim2.new(0.031, 0,0.275, 0)
+    ToggleText.Size = UDim2.new(0, 121, 0, 22)
+    ToggleText.Font = Enum.Font.GothamBold
+    ToggleText.Text = TexT
+    ToggleText.TextColor3 = HawkLib.Themes[Theme].ItemTitleColors
+    ToggleText.TextSize = 14.000
+    ToggleText.TextXAlignment = Enum.TextXAlignment.Left
 
-				ToggleIconer.Name = "ToggleIconer"
-				ToggleIconer.Parent = Toggle
-				ToggleIconer.BackgroundColor3 = HawkLib.Themes[Theme].ItemTextBoxKeyBindColors
-				ToggleIconer.BorderColor3 = HawkLib.Themes[Theme].ItemTextBoxKeyBindColors
-				ToggleIconer.BorderSizePixel = 0
-				ToggleIconer.Position = UDim2.new(0.915300488, 0, 0.275297672, 0)
-				ToggleIconer.Size = UDim2.new(0, 22, 0, 22)
+    UICorner_26.CornerRadius = UDim.new(0, 5)
+    UICorner_26.Parent = ToggleText
 
-				UICorner_27.CornerRadius = UDim.new(0, 4)
-				UICorner_27.Parent = ToggleIconer
+    ToggleIconer.Name = "ToggleIconer"
+    ToggleIconer.Parent = Toggle
+    ToggleIconer.BackgroundColor3 = HawkLib.Themes[Theme].ItemTextBoxKeyBindColors
+    ToggleIconer.BorderColor3 = HawkLib.Themes[Theme].ItemTextBoxKeyBindColors
+    ToggleIconer.BorderSizePixel = 0
+    ToggleIconer.Position = UDim2.new(0.915300488, 0, 0.275297672, 0)
+    ToggleIconer.Size = UDim2.new(0, 22, 0, 22)
 
-				UIStroke.Parent = ToggleIconer
-				UIStroke.Color = HawkLib.Themes[Theme].ItemTextBoxKeyBindStrokeColors
-				UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    UICorner_27.CornerRadius = UDim.new(0, 4)
+    UICorner_27.Parent = ToggleIconer
 
-				done.Name = "done"
-				done.Parent = ToggleIconer
-				done.BackgroundColor3 = HawkLib.Themes[Theme].ItemTextBoxKeyBindColors
-				done.BorderColor3 = HawkLib.Themes[Theme].ItemTextBoxKeyBindColors
-				done.BackgroundTransparency = 1
-				done.Position = UDim2.new(0.0909090936, 0, 0.0909090936, 0)
-				done.Size = UDim2.new(0, 18, 0, 18)
-				done.ZIndex = 2
-				done.Image = "rbxassetid://3926305904"
-				done.ImageRectOffset = Vector2.new(644, 204)
-				done.ImageRectSize = Vector2.new(36, 36)
-				done.ImageColor3 = HawkLib.Themes[Theme].ToggleTickColor
-				done.ImageTransparency = 1
+    UIStroke.Parent = ToggleIconer
+    UIStroke.Color = HawkLib.Themes[Theme].ItemTextBoxKeyBindStrokeColors
+    UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
-				UICorner_28.CornerRadius = UDim.new(0, 4)
-				UICorner_28.Parent = done
+    done.Name = "done"
+    done.Parent = ToggleIconer
+    done.BackgroundColor3 = HawkLib.Themes[Theme].ItemTextBoxKeyBindColors
+    done.BorderColor3 = HawkLib.Themes[Theme].ItemTextBoxKeyBindColors
+    done.BackgroundTransparency = 1
+    done.Position = UDim2.new(0.0909090936, 0, 0.0909090936, 0)
+    done.Size = UDim2.new(0, 18, 0, 18)
+    done.ZIndex = 2
+    done.Image = "rbxassetid://3926305904"
+    done.ImageRectOffset = Vector2.new(644, 204)
+    done.ImageRectSize = Vector2.new(36, 36)
+    done.ImageColor3 = HawkLib.Themes[Theme].ToggleTickColor
+    done.ImageTransparency = toggled and 0 or 1
 
-				UICorner_29.CornerRadius = UDim.new(0, 5)
-				UICorner_29.Parent = ToggleFrame
+    UICorner_28.CornerRadius = UDim.new(0, 4)
+    UICorner_28.Parent = done
 
-				ToggleFrame.MouseEnter:Connect(
-					function()
-						TweenService:Create(
-							ToggleFrame,
-							TweenInfo.new(.2, Enum.EasingStyle.Quad),
-							{BackgroundColor3 = HawkLib.Themes[Theme].ButtonHover}
-						):Play()
-					end
-				)
+    UICorner_29.CornerRadius = UDim.new(0, 5)
+    UICorner_29.Parent = ToggleFrame
 
-				ToggleFrame.MouseLeave:Connect(
-					function()
-						TweenService:Create(
-							ToggleFrame,
-							TweenInfo.new(.2, Enum.EasingStyle.Quad),
-							{BackgroundColor3 = HawkLib.Themes[Theme].ItemColors}
-						):Play()
-					end
-				)
+    ToggleFrame.MouseEnter:Connect(function()
+        game.TweenService:Create(
+            ToggleFrame,
+            TweenInfo.new(.2, Enum.EasingStyle.Quad),
+            {BackgroundColor3 = HawkLib.Themes[Theme].ButtonHover}
+        ):Play()
+    end)
 
-				Toggle.MouseButton1Click:Connect(
-					function()
-						if not focusing then
-							if toggled == false then
-								game.TweenService:Create(
-									done,
-									TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
-									{
-										ImageTransparency = 0
-									}
-								):Play()
+    ToggleFrame.MouseLeave:Connect(function()
+        game.TweenService:Create(
+            ToggleFrame,
+            TweenInfo.new(.2, Enum.EasingStyle.Quad),
+            {BackgroundColor3 = HawkLib.Themes[Theme].ItemColors}
+        ):Play()
+    end)
 
-							else
-								game.TweenService:Create(
-									done,
-									TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
-									{
-										ImageTransparency = 1
-									}
-								):Play()
+    Toggle.MouseButton1Click:Connect(function()
+        if not focusing then
+            toggled = not toggled
+            game.TweenService:Create(
+                done,
+                TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
+                { ImageTransparency = toggled and 0 or 1 }
+            ):Play()
+            wait(0.3)
+            pcall(callback, toggled)
+        end
+    end)
+end
 
-							end
-							toggled = not toggled
-							wait(0.3)
-							pcall(callback, toggled)
-						end
-					end
-				)
 
 				TweenService:Create(
 					Page,
