@@ -2218,25 +2218,27 @@ function HawkLib:Window(Win)
 						local UICorner_29 = Instance.new("UICorner")
 						local UIStroke = Instance.new("UIStroke")
 
-						ToggleFrame.Name = "ToggleFrame"
-						ToggleFrame.Parent = Container
-						ToggleFrame.Active = true
-						ToggleFrame.BackgroundColor3 = HawkLib.Themes[Theme].ItemColors
-						ToggleFrame.BorderColor3 = HawkLib.Themes[Theme].ItemColors
-						ToggleFrame.Position = UDim2.new(0.0196850393, 0, 0.637992859, 0)
-						ToggleFrame.Size = UDim2.new(0, 391, 0, 44)
+    ToggleFrame.Name = "ToggleFrame"
+    ToggleFrame.Parent = Container
+    ToggleFrame.Active = true
+    ToggleFrame.BackgroundColor3 = HawkLib.Themes[Theme].ItemColors
+    ToggleFrame.BorderColor3 = HawkLib.Themes[Theme].ItemColors
+    ToggleFrame.Position = UDim2.new(0.0196850393, 0, 0.637992859, 0)
+    ToggleFrame.Size = UDim2.new(0, 391, 0, 44)
 
-						Toggle.Name = "Toggle"
-						Toggle.Parent = ToggleFrame
-						Toggle.BackgroundColor3 = HawkLib.Themes[Theme].ItemColors
-						Toggle.BackgroundTransparency = 1.000
-						Toggle.BorderColor3 = HawkLib.Themes[Theme].ItemColors
-						Toggle.Size = UDim2.new(0, 391, 0, 44)
-						Toggle.Font = Enum.Font.GothamBold
-						Toggle.Text = ""
-						Toggle.TextColor3 = Color3.fromRGB(154, 154, 154)
-						Toggle.TextSize = 14.000
-						Toggle.AutoButtonColor = false
+    -- Setup Toggle
+    Toggle.Name = "Toggle"
+    Toggle.Parent = ToggleFrame
+    Toggle.BackgroundColor3 = HawkLib.Themes[Theme].ItemColors
+    Toggle.BackgroundTransparency = 1.000
+    Toggle.BorderColor3 = HawkLib.Themes[Theme].ItemColors
+    Toggle.Size = UDim2.new(0, 391, 0, 44)
+    Toggle.Font = Enum.Font.GothamBold
+    Toggle.Text = ""
+    Toggle.TextColor3 = Color3.fromRGB(154, 154, 154)
+    Toggle.TextSize = 14.000
+    Toggle.AutoButtonColor = false
+
 
 						UICorner_25.CornerRadius = UDim.new(0, 5)
 						UICorner_25.Parent = Toggle
@@ -2292,6 +2294,10 @@ function HawkLib:Window(Win)
 						UICorner_29.CornerRadius = UDim.new(0, 5)
 						UICorner_29.Parent = ToggleFrame
 
+						if check ~= nil then
+						    toggled = check
+						end
+
 						ToggleFrame.MouseEnter:Connect(
 							function()
 								TweenService:Create(
@@ -2312,35 +2318,18 @@ function HawkLib:Window(Win)
 							end
 						)
 
-						Toggle.MouseButton1Click:Connect(
-							function()
-								if not focusing then
-									if toggled == false then
-										game.TweenService:Create(
-											done,
-											TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
-											{
-												ImageTransparency = 0
-											}
-										):Play()
-
-									else
-										game.TweenService:Create(
-											done,
-											TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
-											{
-												ImageTransparency = 1
-											}
-										):Play()
-
-									end
-									toggled = not toggled
-									wait(0.3)
-									pcall(callback, toggled)
-								end
-							end
-						)
-
+							    Toggle.MouseButton1Click:Connect(function()
+						        if not focusing then
+						            toggled = not toggled
+						            game.TweenService:Create(
+						                done,
+						                TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
+						                { ImageTransparency = toggled and 1 or 0 }
+						            ):Play()
+						            wait(0.3)
+						            pcall(callback, toggled)
+						        end
+						    end)
 						TweenService:Create(
 							Page,
 							TweenInfo.new(.2, Enum.EasingStyle.Quad),
