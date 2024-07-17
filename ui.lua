@@ -2202,9 +2202,10 @@ function HawkLib:Window(Win)
 					end
 
 function SectionItems:Toggle(TexT, check, callback)
+    print("Toggle function called with TexT:", TexT, "check:", check) 
     check = check or false
     callback = callback or function() end
-    local toggled = false
+    local toggled = check
     local ToggleFrame = Instance.new("Frame")
     local Toggle = Instance.new("TextButton")
     local UICorner_25 = Instance.new("UICorner")
@@ -2313,9 +2314,11 @@ function SectionItems:Toggle(TexT, check, callback)
 
     Toggle.MouseButton1Click:Connect(
         function()
+            print("MouseButton1Click triggered") 
             if not focusing then
                 toggled = not toggled
                 if toggled then
+                    print("Toggle state: ON") 
                     game.TweenService:Create(
                         done,
                         TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
@@ -2324,6 +2327,7 @@ function SectionItems:Toggle(TexT, check, callback)
                         }
                     ):Play()
                 else
+                    print("Toggle state: OFF") 
                     game.TweenService:Create(
                         done,
                         TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
@@ -2350,6 +2354,7 @@ function SectionItems:Toggle(TexT, check, callback)
     function Toggleee:UpdateToggle(boolean)
         local zz = boolean
 
+        print("UpdateToggle called with value:", zz) 
         if zz ~= nil then
             toggled = zz
             if toggled == false then
