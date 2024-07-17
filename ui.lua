@@ -2201,7 +2201,7 @@ function HawkLib:Window(Win)
 						):Play()
 					end
 
-	function SectionItems:Toggle(TexT, check, callback)
+function SectionItems:Toggle(TexT, check, callback)
     check = check or false
     callback = callback or function() end
     local toggled = false
@@ -2245,7 +2245,7 @@ function HawkLib:Window(Win)
     ToggleText.BackgroundColor3 = HawkLib.Themes[Theme].ItemColors
     ToggleText.BackgroundTransparency = 1.000
     ToggleText.BorderColor3 = HawkLib.Themes[Theme].ItemColors
-    ToggleText.Position = UDim2.new(0.031, 0,0.275, 0)
+    ToggleText.Position = UDim2.new(0.031, 0, 0.275, 0)
     ToggleText.Size = UDim2.new(0, 121, 0, 22)
     ToggleText.Font = Enum.Font.GothamBold
     ToggleText.Text = TexT
@@ -2333,6 +2333,7 @@ function HawkLib:Window(Win)
                     ):Play()
                 end
                 wait(0.3)
+                print("Callback should be called with value:", toggled) 
                 callback(toggled)
             end
         end
@@ -2368,6 +2369,7 @@ function HawkLib:Window(Win)
                     }
                 ):Play()
             end
+            print("UpdateToggle callback should be called with value:", zz) 
             callback(zz)
         end
     end
@@ -2376,6 +2378,7 @@ function HawkLib:Window(Win)
 
     return Toggleee
 end
+
 					function SectionItems:TextBox(TexT, Desc, callback)
 						callback = callback or function() end
 
