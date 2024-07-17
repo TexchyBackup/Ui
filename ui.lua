@@ -2202,6 +2202,7 @@ function HawkLib:Window(Win)
 					end
 
 					function SectionItems:Toggle(TexT, check, callback)
+						check = check or nil
 						callback = callback or function()
 						end
 						local toggled = false
@@ -2291,7 +2292,7 @@ function HawkLib:Window(Win)
 						UICorner_29.CornerRadius = UDim.new(0, 5)
 						UICorner_29.Parent = ToggleFrame
 
-						Toggle.MouseEnter:Connect(
+						ToggleFrame.MouseEnter:Connect(
 							function()
 								TweenService:Create(
 									ToggleFrame,
@@ -2301,7 +2302,7 @@ function HawkLib:Window(Win)
 							end
 						)
 
-						Toggle.MouseLeave:Connect(
+						ToggleFrame.MouseLeave:Connect(
 							function()
 								TweenService:Create(
 									ToggleFrame,
@@ -2348,49 +2349,49 @@ function HawkLib:Window(Win)
 
 						local Toggleee = {}
 
-						function Toggleee:UpdateToggle(boolean)
-							local zz = boolean
+					    function Toggleee:UpdateToggle(boolean)
+					        local zz = boolean
+					
+					        if zz ~= nil then
+					            toggled = zz
+					            if toggled == false then
+					                game.TweenService:Create(
+					                    done,
+					                    TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
+					                    {
+					                        ImageTransparency = 1
+					                    }
+					                ):Play()
+					
+					            else
+					                game.TweenService:Create(
+					                    done,
+					                    TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
+					                    {
+					                        ImageTransparency = 0
+					                    }
+					                ):Play()
+					
+					            end
+					            pcall(callback, zz)    
+					        end
+					    end
 
-							if zz ~= nil then
-								toggled = zz
-								if toggled == false then
-									game.TweenService:Create(
-										done,
-										TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
-										{
-											ImageTransparency = 1
-										}
-									):Play()
-
-								else
-									game.TweenService:Create(
-										done,
-										TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
-										{
-											ImageTransparency = 0
-										}
-									):Play()
-
-								end
-								pcall(callback, zz)	
-							end
-						end
-
-						if check == true then
-							Toggleee:UpdateToggle(true)
-						elseif check == false then
-							Toggleee:UpdateToggle(false)
-						elseif check == nil or tostring(check):match("func") then
-							game.TweenService:Create(
-								done,
-								TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
-								{
-									ImageTransparency = 1
-								}
-							):Play()
-						end
-
-						return Toggleee
+					    if check == true then
+					        Toggleee:UpdateToggle(true)
+					    elseif check == false then
+					        Toggleee:UpdateToggle(false)
+					    elseif check == nil or tostring(check):match("func") then
+					        game.TweenService:Create(
+					            done,
+					            TweenInfo.new(0.11, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
+					            {
+					                ImageTransparency = 1
+					            }
+					        ):Play()
+					    end
+					
+					    return Toggleee
 					end
 
 					function SectionItems:TextBox(TexT, Desc, callback)
