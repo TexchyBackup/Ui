@@ -1,4 +1,4 @@
--- Image Function is firstly made by __spyro. After the ui libs with image function probably skidded this source
+
 
 local UserInputService = game:GetService("UserInputService")
 local OnPc = not UserInputService.TouchEnabled and UserInputService.KeyboardEnabled and UserInputService.MouseEnabled
@@ -204,41 +204,41 @@ local HawkLib = {
 
 local NotificationSettings = {
 	notification = {
-		[1] = UDim2.new(0, 287,0, 61), --Normal
-		[2] = UDim2.new(0, 287,0, 74), --Wide
-		[3] = UDim2.new(0, 287,0, 82), --Wider
+		[1] = UDim2.new(0, 287,0, 61), 
+		[2] = UDim2.new(0, 287,0, 74), 
+		[3] = UDim2.new(0, 287,0, 82), 
 	},
 	icon = {
-		[1] = UDim2.new(0.042, 0,0.162, 0), --Normal
-		[2] = UDim2.new(0.042, 0,0.229, 0), --Wide
-		[3] = UDim2.new(0.042, 0,0.247, 0), --Wider
+		[1] = UDim2.new(0.042, 0,0.162, 0), 
+		[2] = UDim2.new(0.042, 0,0.229, 0), 
+		[3] = UDim2.new(0.042, 0,0.247, 0), 
 	},
 	listing = {
 		Size = {
-			[1] = UDim2.new(0, 189,0, 35), --Normal
-			[2] = UDim2.new(0, 189,0, 55), --Wide
-			[3] = UDim2.new(0, 189,0, 68), --Wider
+			[1] = UDim2.new(0, 189,0, 35), 
+			[2] = UDim2.new(0, 189,0, 55), 
+			[3] = UDim2.new(0, 189,0, 68), 
 		},
 		Position = {
-			[1] = UDim2.new(0.212, 0,0.24, 0), --Normal
-			[2] = UDim2.new(0.212, 0,0.174, 0), --Wide
-			[3] = UDim2.new(0.212, 0,0.09, 0), --Wider
+			[1] = UDim2.new(0.212, 0,0.24, 0), 
+			[2] = UDim2.new(0.212, 0,0.174, 0), 
+			[3] = UDim2.new(0.212, 0,0.09, 0), 
 		}
 	},
 	description = {
-		[1] = UDim2.new(0, 162,0, 20), --Normal
-		[2] = UDim2.new(0, 162,0, 33), --Wide
-		[3] = UDim2.new(0, 162,0, 46), --Wider
+		[1] = UDim2.new(0, 162,0, 20), 
+		[2] = UDim2.new(0, 162,0, 33), 
+		[3] = UDim2.new(0, 162,0, 46), 
 	},
 	checkmark = {
-		[1] = UDim2.new(0.886, 0,0.174, 0), --Normal
-		[2] = UDim2.new(0.886, 0,0.174, 0), --Wide
-		[3] = UDim2.new(0.886, 0,0.174, 0), --Wider
+		[1] = UDim2.new(0.886, 0,0.174, 0), 
+		[2] = UDim2.new(0.886, 0,0.174, 0), 
+		[3] = UDim2.new(0.886, 0,0.174, 0), 
 	},
 	crossmark = {
-		[1] = UDim2.new(0.886, 0,0.539, 0), --Normal
-		[2] = UDim2.new(0.886, 0,0.58, 0), --Wide
-		[3] = UDim2.new(0.886, 0,0.625, 0), --Wider
+		[1] = UDim2.new(0.886, 0,0.539, 0), 
+		[2] = UDim2.new(0.886, 0,0.58, 0), 
+		[3] = UDim2.new(0.886, 0,0.625, 0), 
 	},
 
 
@@ -2970,7 +2970,7 @@ function HawkLib:Window(Win)
 
 						function dropfunc:Refresh(newlist, boolean)
 							local bolen = boolean
-							--Clearing List
+							
 							Title.Text = teks
 							FrameSize = 0
 							ItemCount = 0
@@ -3004,7 +3004,7 @@ function HawkLib:Window(Win)
 								wait()
 							until DropdownFrame.Size == UDim2.new(0, 391, 0, 0)
 							DropdownFrame.Visible = false
-							--Adding new listo
+							
 
 							for i, v in next, newlist do
 								ItemCount = ItemCount + 1
@@ -5802,7 +5802,7 @@ function HawkLib:Window(Win)
 
 				function dropfunc:Refresh(newlist, boolean)
 					local bolen = boolean
-					--Clearing List
+					
 					Title.Text = teks
 					FrameSize = 0
 					ItemCount = 0
@@ -5836,7 +5836,7 @@ function HawkLib:Window(Win)
 						wait()
 					until DropdownFrame.Size == UDim2.new(0, 391, 0, 0)
 					DropdownFrame.Visible = false
-					--Adding new listo
+					
 
 					for i, v in next, newlist do
 						ItemCount = ItemCount + 1
@@ -6813,6 +6813,75 @@ function HawkLib:AddNotifications()
 			end)
 
 		end
+
+		function HawkLib:SaveConfig()
+  local config = {}
+  
+  
+  local function saveElement(element)
+    if element:IsA("TextButton") and element.Name == "Toggle" then
+      
+      config[element.ToggleText.Text] = element.done.ImageTransparency == 0
+    elseif element:IsA("Frame") and element.Name == "Slider" then
+      
+      config[element.SliderTitle.Text] = tonumber(element.Num.Text)
+    elseif element:IsA("TextBox") and element.Name == "TexttingBox" then
+      
+      config[element.Parent.TextBoxTitle.Text] = element.Text
+    end
+    
+    
+    for _, child in ipairs(element:GetChildren()) do
+      saveElement(child)
+    end
+  end
+
+  
+  saveElement(Hawk)
+
+  return config
+end
+
+function HawkLib:LoadConfig(config)
+  
+  local function loadElement(element)
+    if element:IsA("TextButton") and element.Name == "Toggle" then
+      
+      local state = config[element.ToggleText.Text]
+      if state ~= nil then
+        element.done.ImageTransparency = state and 0 or 1
+        
+        element.MouseButton1Click:Fire()
+      end
+    elseif element:IsA("Frame") and element.Name == "Slider" then
+      
+      local value = config[element.SliderTitle.Text]
+      if value ~= nil then
+        element.Num.Text = tostring(value)
+        
+        element.InSliderFrame.Size = UDim2.fromScale(((value - element.minvalue) / (element.maxvalue - element.minvalue)), 1)
+        
+        element.SliderButton.MouseButton1Click:Fire()
+      end
+    elseif element:IsA("TextBox") and element.Name == "TexttingBox" then
+      
+      local text = config[element.Parent.TextBoxTitle.Text]
+      if text ~= nil then
+        element.Text = text
+        
+        element.FocusLost:Fire(true)
+      end
+    end
+    
+    
+    for _, child in ipairs(element:GetChildren()) do
+      loadElement(child)
+    end
+  end
+
+  
+  loadElement(Hawk)
+end
 
 
 		function NotificationItems:Notify(title, text, Selector, callback)			
