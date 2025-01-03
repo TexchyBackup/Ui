@@ -6,7 +6,7 @@ local MacLib = {
 	end,
 }
 
-
+--// Services
 local TweenService = MacLib.GetService("TweenService")
 local RunService = MacLib.GetService("RunService")
 local HttpService = MacLib.GetService("HttpService")
@@ -15,7 +15,7 @@ local UserInputService = MacLib.GetService("UserInputService")
 local Lighting = MacLib.GetService("Lighting")
 local Players = MacLib.GetService("Players")
 
-
+--// Variables
 local isStudio = RunService:IsStudio()
 local LocalPlayer = Players.LocalPlayer
 
@@ -45,7 +45,7 @@ local assets = {
 	sliderhead = "rbxassetid://18772834246",
 }
 
-
+--// Functions
 local function GetGui()
 	local newGui = Instance.new("ScreenGui")
 	newGui.ScreenInsets = Enum.ScreenInsets.None
@@ -65,7 +65,7 @@ local function Tween(instance, tweeninfo, propertytable)
 	return TweenService:Create(instance, tweeninfo, propertytable)
 end
 
-
+--// Library Functions
 function MacLib:Window(Settings)
 	local WindowFunctions = { Settings = Settings }
 	if Settings.AcrylicBlur ~= nil then
@@ -1723,49 +1723,6 @@ function MacLib:Window(Settings)
 					toggle.Size = UDim2.new(1, 0, 0, 38)
 					toggle.Parent = section
 
-					
-					
-					local keybindContainer = Instance.new("Frame")
-					keybindContainer.Name = "KeybindContainer"
-					keybindContainer.BackgroundTransparency = 1
-					keybindContainer.Size = UDim2.fromOffset(21, 21)
-					keybindContainer.Position = UDim2.new(0.7, 0, 0.5, 0) 
-					keybindContainer.AnchorPoint = Vector2.new(0, 0.5)
-					keybindContainer.Visible = true
-					keybindContainer.Parent = toggle
-
-					local binderBox = Instance.new("TextBox")
-					binderBox.Name = "BinderBox"
-					binderBox.CursorPosition = -1
-					binderBox.FontFace = Font.new(assets.interFont)
-					binderBox.PlaceholderText = "..."
-					binderBox.Text = ""
-					binderBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-					binderBox.TextSize = 12
-					binderBox.TextTransparency = 0.1
-					binderBox.AutomaticSize = Enum.AutomaticSize.X
-					binderBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-					binderBox.BackgroundTransparency = 0.95
-					binderBox.BorderSizePixel = 0
-					binderBox.ClipsDescendants = true
-					binderBox.Size = UDim2.fromOffset(21, 21)
-					binderBox.Parent = keybindContainer
-
-					local binderBoxUICorner = Instance.new("UICorner")
-					binderBoxUICorner.CornerRadius = UDim.new(0, 4)
-					binderBoxUICorner.Parent = binderBox
-
-					local binderBoxUIStroke = Instance.new("UIStroke")
-					binderBoxUIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-					binderBoxUIStroke.Color = Color3.fromRGB(255, 255, 255)
-					binderBoxUIStroke.Transparency = 0.9
-					binderBoxUIStroke.Parent = binderBox
-
-					local binderBoxUIPadding = Instance.new("UIPadding")
-					binderBoxUIPadding.PaddingLeft = UDim.new(0, 5)
-					binderBoxUIPadding.PaddingRight = UDim.new(0, 5)
-					binderBoxUIPadding.Parent = binderBox
-
 					local toggleName = Instance.new("TextLabel")
 					toggleName.Name = "ToggleName"
 					toggleName.FontFace = Font.new(assets.interFont)
@@ -1786,6 +1743,7 @@ function MacLib:Window(Settings)
 					toggleName.Position = UDim2.fromScale(0, 0.5)
 					toggleName.Size = UDim2.new(1, -50, 0, 0)
 					toggleName.Parent = toggle
+
 					local toggle1 = Instance.new("ImageButton")
 					toggle1.Name = "Toggle"
 					toggle1.Image = assets.toggleBackground
@@ -1796,10 +1754,9 @@ function MacLib:Window(Settings)
 					toggle1.BackgroundTransparency = 1
 					toggle1.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					toggle1.BorderSizePixel = 0
-					toggle1.Position = UDim2.new(0.95, 0, 0.5, 0) 
+					toggle1.Position = UDim2.fromScale(1, 0.5)
 					toggle1.Size = UDim2.fromOffset(41, 21)
 					toggle1.ImageTransparency = 0.5
-					toggle1.Parent = toggle
 
 					local toggleUIPadding = Instance.new("UIPadding")
 					toggleUIPadding.Name = "ToggleUIPadding"
@@ -1824,38 +1781,35 @@ function MacLib:Window(Settings)
 					togglerHead.Parent = toggle1
 					togglerHead.ImageTransparency = 0.8
 
-					local toggle1Transparency = { Enabled = 0, Disabled = 0.5 }
-					local togglerHeadTransparency = { Enabled = 0, Disabled = 0.85 }
+					toggle1.Parent = toggle
+
+					local toggle1Transparency = {Enabled = 0, Disabled = 0.5}
+					local togglerHeadTransparency = {Enabled = 0, Disabled = 0.85}
 
 					local TweenSettings = {
 						Info = TweenInfo.new(0.15, Enum.EasingStyle.Quad),
+
 						EnabledPosition = UDim2.new(1, 0, 0.5, 0),
 						DisabledPosition = UDim2.new(0.5, 0, 0.5, 0),
 					}
 
 					local togglebool = ToggleFunctions.Settings.Default
-					local keybindConnection
-					local focused = false
-					local isBinding = false
-					local reset = false
-					local binded = nil
 
 					local function NewState(State, callback)
-						local transparencyValues = State
-								and { toggle1Transparency.Enabled, togglerHeadTransparency.Enabled }
-							or { toggle1Transparency.Disabled, togglerHeadTransparency.Disabled }
+						local transparencyValues = State and {toggle1Transparency.Enabled, togglerHeadTransparency.Enabled}
+							or {toggle1Transparency.Disabled, togglerHeadTransparency.Disabled}
 						local position = State and TweenSettings.EnabledPosition or TweenSettings.DisabledPosition
 
 						Tween(toggle1, TweenSettings.Info, {
-							ImageTransparency = transparencyValues[1],
+							ImageTransparency = transparencyValues[1]
 						}):Play()
 
 						Tween(togglerHead, TweenSettings.Info, {
-							ImageTransparency = transparencyValues[2],
+							ImageTransparency = transparencyValues[2]
 						}):Play()
 
 						Tween(togglerHead, TweenSettings.Info, {
-							Position = position,
+							Position = position
 						}):Play()
 
 						ToggleFunctions.State = State
@@ -1864,15 +1818,11 @@ function MacLib:Window(Settings)
 						end
 					end
 
+					NewState(togglebool)
+
 					local function Toggle()
 						togglebool = not togglebool
 						NewState(togglebool, ToggleFunctions.Settings.Callback)
-					end
-
-					local function resetFocusState()
-						focused = false
-						isBinding = false
-						binderBox:ReleaseFocus()
 					end
 
 					toggle1.MouseButton1Click:Connect(Toggle)
@@ -1880,40 +1830,19 @@ function MacLib:Window(Settings)
 					function ToggleFunctions:Toggle()
 						Toggle()
 					end
-
 					function ToggleFunctions:UpdateState(State)
 						togglebool = State
 						NewState(togglebool, ToggleFunctions.Settings.Callback)
 					end
-
 					function ToggleFunctions:GetState()
 						return togglebool
 					end
-
 					function ToggleFunctions:UpdateName(Name)
 						toggleName.Text = Name
 					end
-
 					function ToggleFunctions:SetVisibility(State)
 						toggle.Visible = State
 					end
-
-					function ToggleFunctions:RemoveKeybind()
-						if keybindConnection then
-							keybindConnection:Disconnect()
-							keybindConnection = nil
-						end
-						binded = nil
-						keybindContainer.Visible = false
-						toggleName.Position = UDim2.fromScale(0, 0.5)
-						binderBox.Text = ""
-					end
-
-					function ToggleFunctions:GetKeybind()
-						return binded
-					end
-
-					NewState(togglebool)
 
 					if Flag then
 						MacLib.Options[Flag] = ToggleFunctions
@@ -1935,7 +1864,7 @@ function MacLib:Window(Settings)
 					toggle.Size = UDim2.new(1, 0, 0, 38)
 					toggle.Parent = section
 
-					
+					-- Add keybind container (visible by default)
 					local keybindContainer = Instance.new("Frame")
 					keybindContainer.Name = "KeybindContainer"
 					keybindContainer.BackgroundTransparency = 1
@@ -1995,7 +1924,7 @@ function MacLib:Window(Settings)
 					toggleName.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					toggleName.BorderSizePixel = 0
 					toggleName.Position = UDim2.fromScale(0, 0.5)
-					toggleName.Size = UDim2.new(1, -80, 0, 0) 
+					toggleName.Size = UDim2.new(1, -80, 0, 0) -- Adjusted for keybind
 					toggleName.Parent = toggle
 
 					local toggle1 = Instance.new("ImageButton")
@@ -2110,12 +2039,12 @@ function MacLib:Window(Settings)
 						focused = false
 					end)
 
-					
+					-- Update the input handling
 					if keybindConnection then
 						keybindConnection:Disconnect()
 					end
 					UserInputService.InputBegan:Connect(function(inp)
-						
+						-- Check if UI exists and is visible first
 						if not macLib or unloaded or not windowState then 
 							return 
 						end
@@ -2152,7 +2081,7 @@ function MacLib:Window(Settings)
 					UserInputService.InputEnded:Connect(function(inp)
 						if not focused and not isBinding then
 							if inp.KeyCode == binded or inp.UserInputType == binded then
-								
+								-- Handle key release if needed
 							end
 						end
 					end)
@@ -2168,7 +2097,7 @@ function MacLib:Window(Settings)
 						NewState(togglebool, ToggleFunctions.Settings.Callback)
 					end
 
-					
+					-- Add these functions to ToggleFunctions
 					function ToggleFunctions:Bind(Key)
 						binded = Key
 						binderBox.Text = Key.Name
@@ -2262,7 +2191,7 @@ function MacLib:Window(Settings)
 					sliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
 					sliderValue.TextSize = 12
 					sliderValue.TextTransparency = 0.1
-					
+					--sliderValue.TextTruncate = Enum.TextTruncate.AtEnd
 					sliderValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 					sliderValue.BackgroundTransparency = 0.95
 					sliderValue.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2336,10 +2265,10 @@ function MacLib:Window(Settings)
 					local dragging = false
 
 					local DisplayMethods = {
-						Hundredths = function(sliderValue) 
+						Hundredths = function(sliderValue) -- Deprecated use Settings.Precision
 							return string.format("%.2f", sliderValue)
 						end,
-						Tenths = function(sliderValue) 
+						Tenths = function(sliderValue) -- Deprecated use Settings.Precision
 							return string.format("%.1f", sliderValue)
 						end,
 						Round = function(sliderValue, precision)
@@ -4883,7 +4812,7 @@ function MacLib:Window(Settings)
 					labelText.Name = "LabelText"
 					labelText.FontFace = Font.new(assets.interFont)
 					labelText.RichText = true
-					labelText.Text = LabelFunctions.Settings.Text or LabelFunctions.Settings.Name 
+					labelText.Text = LabelFunctions.Settings.Text or LabelFunctions.Settings.Name -- Settings.Name Deprecated use Settings.Text
 					labelText.TextColor3 = Color3.fromRGB(255, 255, 255)
 					labelText.TextSize = 13
 					labelText.TextTransparency = 0.5
@@ -4927,7 +4856,7 @@ function MacLib:Window(Settings)
 					subLabelText.Name = "SubLabelText"
 					subLabelText.FontFace = Font.new(assets.interFont)
 					subLabelText.RichText = true
-					subLabelText.Text = SubLabelFunctions.Settings.Text or SubLabelFunctions.Settings.Name 
+					subLabelText.Text = SubLabelFunctions.Settings.Text or SubLabelFunctions.Settings.Name -- Settings.Name Deprecated use Settings.Text
 					subLabelText.TextColor3 = Color3.fromRGB(255, 255, 255)
 					subLabelText.TextSize = 12
 					subLabelText.TextTransparency = 0.7
